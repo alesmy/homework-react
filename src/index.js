@@ -18,4 +18,5 @@ const App = ({ ...rest }) => {
   )
 }
 
+
 ReactDOM.render(<App message={'Какой-то длинный текст...'} />, document.getElementById('root'));
