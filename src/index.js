@@ -1,22 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import MessageList from './MessageList';
 import './index.css';
 
-const MessageComponent = ({ message }) => {
-  return <div class='message'>
-    Вывод сообщения из пропса: <b>{message}</b>
-  </div >
-}
+const App = () => {
 
-const App = ({ ...rest }) => {
+  const [messages, setMessages] = useState([]);
+
+  const [messageValue, setMessageValue] = useState('');
+  const [authorValue, setAuthorValue] = useState('');
+
+  const addMessage = event => {
+    setMessages([
+      ...messages, {
+        id: Date.now(),
+        text: messageValue,
+        author: authorValue,
+      }
+    ])
+
+    event.preventDefault();
+
+    setMessageValue('');
+    setAuthorValue('');
+  }
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      setTimeout("alert('Ваше сообщение принято')", 500);
+    }
+  }, [messages]);
+
   return (
     <div>
-      <h1>Сообщение:</h1>
+      <form onSubmit={addMessage} className="form">
+        <input
+          type="text"
+          value={authorValue}
+          onChange={event => setAuthorValue(event.target.value)}
+          placeholder='автор'
+        />
+        <textarea
+          value={messageValue}
+          onChange={event => setMessageValue(event.target.value)}
+          placeholder='сообщение'
+        />
+        <input type="submit" value="Отправить" />
+      </form>
 
-      <MessageComponent {...rest} />
+      <MessageList messages={messages} />
     </div>
   )
 }
 
 
-ReactDOM.render(<App message={'Какой-то длинный текст...'} />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
