@@ -1,57 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider, createTheme } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import MessageList from './MessageList';
+import ChatList from './ChatList';
 import './index.css';
+
+const light = createTheme({
+  theme: {
+    color: '#fff',
+  }
+});
 
 const App = () => {
 
   const [messages, setMessages] = useState([]);
 
   const [messageValue, setMessageValue] = useState('');
-  const [authorValue, setAuthorValue] = useState('');
 
   const addMessage = event => {
-    setMessages([
-      ...messages, {
-        id: Date.now(),
-        text: messageValue,
-        author: authorValue,
-      }
-    ])
+    setMessages([...messages, { id: Date.now(), text: messageValue, author: 'User', }])
 
     event.preventDefault();
 
     setMessageValue('');
-    setAuthorValue('');
   }
 
   useEffect(() => {
-    if (messages.length > 0) {
-      setTimeout("alert('Ваше сообщение принято')", 500);
+    if (messages.length && messages[messages.length - 1].author !== 'Bot') {
+
+      setTimeout(() => {
+
+        setMessages([
+          ...messages, {
+            text: 'Thank you for your message!',
+            author: 'Bot',
+          }
+        ])
+
+      }, 500);
     }
   }, [messages]);
 
   return (
-    <div>
-      <form onSubmit={addMessage} className="form">
-        <input
-          type="text"
-          value={authorValue}
-          onChange={event => setAuthorValue(event.target.value)}
-          placeholder='автор'
-        />
-        <textarea
-          value={messageValue}
-          onChange={event => setMessageValue(event.target.value)}
-          placeholder='сообщение'
-        />
-        <input type="submit" value="Отправить" />
-      </form>
+    <div class='page'>
+      <div className="listBlock">
+        <ChatList />
+      </div>
+      <div className="messageBlock">
+        <form onSubmit={addMessage} className="form">
+          <TextField
+            fullWidth
+            autoFocus
+            id="standard-basic"
+            label="Введите Ваше сообщение..."
+            variant="standard"
+            value={messageValue}
+            onChange={event => setMessageValue(event.target.value)}
+          />
+          <Button type="submit">Отправить</Button>
+        </form>
 
-      <MessageList messages={messages} />
+        <MessageList messages={messages} />
+      </div>
     </div>
   )
 }
 
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <ThemeProvider theme={light}>
+    <App />
+  </ThemeProvider >,
+  document.getElementById('root'));

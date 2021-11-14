@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+.page {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  padding: 30px;
+}
+
 h1 {
   color: darkblue;
 }
@@ -21,18 +28,10 @@ ul {
   padding-left: 0;
 }
 
-.message {
-  display: inline-block;
-  padding: 15px 20px;
-  background: darkgrey;
-}
-
 .form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px 25px;
-  border-top: 1px solid grey;
 }
 
 input {
@@ -46,21 +45,14 @@ textarea {
   padding: 10px;
 }
 
-.messageBlock {
-  margin: 30px 25px;
-  width: 50%;
-}
-
 .message {
   padding: 20px;
   background: lightgray; 
   font-style: italic;
   margin-bottom: 5px;
-  width: 100%;
 }
 
 .author {
   font-weight: 500;
   text-align: right;
-  width: 100%;
 }

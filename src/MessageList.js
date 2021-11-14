@@ -1,4 +1,3 @@
-import React from 'react';
 import MessageItem from './MessageItem';
 
 export default function MessageList({ messages }) {
@@ -8,5 +7,4 @@ export default function MessageList({ messages }) {
             {messages.map(item => <MessageItem key={item.id} {...item} />)}
         </ul>
     )
-
-}
+};
