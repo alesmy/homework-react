@@ -1,6 +1,7 @@
 import MessageItem from './MessageItem';
 
 export default function MessageList({ messages }) {
+    console.log(messages);
 
     return (
         <ul>

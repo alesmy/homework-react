@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { List } from "@mui/material";
-import { ChatItem } from './ChatItem'
+import ChatItem from './ChatItem'
 
 export default function ChatList() {
-    const [chatList, setchatList] = useState(["Первый чат", "Второй чат"]);
+    const [chats, setChats] = useState([
+        { id: 1223456, name: "Первый чат" },
+        { id: 5554452, name: "Второй чат" }
+    ]);
 
     return (
         <List>
-            <div>
-                {chatList.map(item => <ChatItem key={item.id} {...item} />)}
-            </div>
+            {chats.map(item => <ChatItem key={item.id} {...item} />)}
         </List>
     );
 };

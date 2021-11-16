@@ -1,13 +1,11 @@
 import { ListItem } from "@mui/material";
 
-export default function ChatItem() {
+export default function ChatItem({ name, id }) {
 
     return (
         <ListItem>
             <div>
-                ddd
-                {/* <h3>{title}</h3>
-                <p>{text}</p> */}
+                <h3>{name}</h3>
             </div>
         </ListItem>
     );

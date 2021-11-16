@@ -33,6 +33,7 @@ const App = () => {
 
         setMessages([
           ...messages, {
+            id: (Date.now() + 1),
             text: 'Thank you for your message!',
             author: 'Bot',
           }
@@ -43,11 +44,14 @@ const App = () => {
   }, [messages]);
 
   return (
-    <div class='page'>
+    <div className='page'>
+
       <div className="listBlock">
         <ChatList />
       </div>
+
       <div className="messageBlock">
+
         <form onSubmit={addMessage} className="form">
           <TextField
             fullWidth
