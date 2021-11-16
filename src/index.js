@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { TextField, Button } from '@mui/material';
-import MessageList from './MessageList';
-import ChatList from './ChatList';
+
+import ChatList from './components/chatList/ChatList';
+import MessageList from './components/messageList/MessageList';
+
+// import { ChatList, MessageList } from './components';
+
 import './index.css';
 
 const light = createTheme({

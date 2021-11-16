@@ -1,6 +1,6 @@
 import { ListItem } from "@mui/material";
 
-export default function ChatItem({ name, id }) {
+export function ChatItem({ name, id }) {
 
     return (
         <ListItem>

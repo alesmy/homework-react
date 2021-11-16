@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { List } from "@mui/material";
-import ChatItem from './ChatItem'
+// import ChatItem from './ChatItem'
+import { ChatItem } from '../chatItem';
 
 export default function ChatList() {
     const [chats, setChats] = useState([
