@@ -1,6 +1,6 @@
-import MessageItem from '../messageItem/MessageItem';
+import { MessageItem } from '../messageItem/MessageItem';
 
-export default function MessageList({ messages }) {
+export function MessageList({ messages }) {
     console.log(messages);
 
     return (
