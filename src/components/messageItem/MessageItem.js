@@ -1,4 +1,5 @@
-export function MessageItem({ text, author, id }) {
+// export function MessageItem({ text, author, id }) {
+export function MessageItem({ text, author }) {
 
     return (
         <li className='messageBlock'>

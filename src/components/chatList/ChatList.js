@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { Link, useParams } from "react-router-dom";
 import { List } from "@mui/material";
 import { ChatItem } from '../chatItem';
 
 export function ChatList() {
-    const [chats, setChats] = useState([
-        { id: 1223456, name: "Первый чат" },
-        { id: 5554452, name: "Второй чат" }
-    ]);
+    const [chats] = useState(["Первый чат", "Второй чат", "Третий чат"]);
+    const params = useParams();
 
     return (
         <List>
-            {chats.map(item => <ChatItem key={item.id} {...item} />)}
+            {chats.map((chat, index) => (
+                <Link key={chat} to={`/chat/${chat}`}>
+                    <ChatItem title={chat} selected={params.id === chat} />
+                </Link>
+            ))}
         </List>
     );
 };
