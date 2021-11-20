@@ -4,6 +4,9 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { Menu } from './components';
 import { Home, Chat, Profile } from './pages';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from './store';
+
 import './index.css';
 
 const light = createTheme({
@@ -14,7 +17,7 @@ const light = createTheme({
 
 const App = () => {
   return (
-    <div>
+    <Provider store={store}>
       <BrowserRouter>
         <Menu />
         <Routes>
@@ -24,7 +27,7 @@ const App = () => {
           <Route path='/*' element={<h3>404</h3>} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </Provider>
   )
 }
 
