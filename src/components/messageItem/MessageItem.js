@@ -1,10 +1,9 @@
-// export function MessageItem({ text, author, id }) {
-export function MessageItem({ text, author }) {
+export function MessageItem({ message }) {
 
     return (
-        <li className='messageBlock'>
-            <div className='message'>{text}</div>
-            <div className='author'>{author}</div>
-        </li>
+        <div className='messageBlock'>
+            <div className='message'>{message.text}</div>
+            <div className='author'>{message.author}</div>
+        </div>
     )
 }
