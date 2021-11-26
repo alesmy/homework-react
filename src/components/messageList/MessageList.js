@@ -1,30 +1,31 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { sendMessage, messagesSelector } from '../../store/messages';
 import { Input, InputAdornment } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import { MessageItem } from '../messageItem/MessageItem';
 
 export function MessageList() {
 
+    const dispatch = useDispatch();
     const { id } = useParams();
 
-    const [messages, setMessages] = useState({});
+    const savedmessagesSelector = useMemo(() => messagesSelector(id), [id]);
+    const messagesList = useSelector(savedmessagesSelector);
+
     const [value, setValue] = useState('');
 
     const ref = useRef(null);
 
     const addMessage = useCallback((text, author = "User") => {
         if (text) {
-            setMessages({
-                ...messages, [id]: [...(messages[id] ?? []), { author, text, date: new Date() },],
-            });
+            dispatch(sendMessage({ author, text }, id));
             setValue("");
         }
     },
-        [messages, id]
+        [dispatch, id]
     );
-
-    const messagesList = messages[id] ?? [];
 
     useEffect(() => {
         const lastMessage = messagesList[messagesList.length - 1];
