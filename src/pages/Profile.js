@@ -1,9 +1,9 @@
-import { toggleShowName } from '../store/profile';
+import { toggleShowName, profileSelector } from '../store/profile';
 import { useSelector, useDispatch } from "react-redux";
 import { Checkbox, FormGroup, FormControlLabel } from '@mui/material';
 
 export function Profile() {
-    const { showName, firstName, lastName } = useSelector((state) => state);
+    const { showName, firstName, lastName } = useSelector(profileSelector);
     const dispatch = useDispatch();
 
     return (

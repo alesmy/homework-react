@@ -1,8 +1,13 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { profileReducer } from "./profile";
+import { messagesReducer } from "./messages";
+import { conversationsReducer } from "./conversations";
 
 export const store = createStore(
-    profileReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__()
+    combineReducers({
+        profileStore: profileReducer,
+        messagesStore: messagesReducer,
+        conversationsStore: conversationsReducer,
+    })
 );
+
