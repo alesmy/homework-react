@@ -22,7 +22,7 @@ export function ChatList() {
 
     const addConversation = useCallback((conversation) => {
         if (conversation) {
-            dispatch(createConversations(conversation);
+            // dispatch(createConversations(conversation);
             setValue("");
         }
     },
