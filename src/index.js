@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { Menu } from './components';
-import { Home, Chat, Profile } from './pages';
+import { Home, Chat, Profile, Gists } from './pages';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -26,6 +26,7 @@ const App = () => {
             <Route path='/' element={<Home />} />
             <Route path='/profile/' element={<Profile />} />
             <Route path='/chat/*' element={<Chat />} />
+            <Route path='/gists/' element={<Gists />} />
             <Route path='/*' element={<h3>404</h3>} />
           </Routes>
         </BrowserRouter>
