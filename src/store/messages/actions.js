@@ -1,4 +1,4 @@
-import { SEND_MESSAGE } from './types';
+import { SEND_MESSAGE, GET_MESSAGES_SUCCESS, GET_MESSAGES_ERROR, GET_MESSAGES, } from './types';
 
 export const sendMessage = (message, id) => {
     return {
@@ -9,3 +9,17 @@ export const sendMessage = (message, id) => {
         }
     };
 }
+
+export const getConversationsStart = () => ({
+    type: GET_MESSAGES,
+});
+
+export const getConversationsSuccess = (messages) => ({
+    type: GET_MESSAGES_SUCCESS,
+    payload: messages,
+});
+
+export const getConversationsError = (error) => ({
+    type: GET_MESSAGES_ERROR,
+    payload: error,
+});

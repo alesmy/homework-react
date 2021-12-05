@@ -1,4 +1,4 @@
-import { sendMessage } from './actions';
+import { sendMessage, getConversationsStart, getConversationsSuccess, getConversationsError } from './actions';
 
 export const sendMessageFromBot = (message, id) => (dispatch, getState) => {
     // const cancel = dispatch(sendMessage(message, id));
@@ -14,4 +14,21 @@ export const sendMessageFromBot = (message, id) => (dispatch, getState) => {
         }, 500);
 
     }
+};
+
+export const getMessagesFB = () => (dispatch, _, api) => {
+    dispatch(getConversationsStart());
+
+    api
+        .getMessagesApi()
+        .then((snapshot) => {
+            const messages = {};
+
+            snapshot.forEach((snap) => {
+                messages[snap.key] = Object.values(snap.val());
+            });
+
+            dispatch(getConversationsSuccess(messages));
+        })
+        .catch((e) => dispatch(getConversationsError(e)));
 };
