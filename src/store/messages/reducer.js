@@ -1,11 +1,14 @@
-import { SEND_MESSAGE } from './types';
+import {
+    SEND_MESSAGE,
+    GET_MESSAGES_SUCCESS,
+    GET_MESSAGES_ERROR,
+    GET_MESSAGES,
+} from './types';
 
 const initialState = {
-    messages: {
-        'Первый чат': [{ id: new Date(), author: 'Bot', text: 'Hello to room 1' }],
-        'Второй чат': [{ id: new Date(), author: 'Bot', text: 'Hello to room 2' }],
-        'Третий чат': [{ id: new Date(), author: 'Bot', text: 'Hello to room 3' }],
-    },
+    messages: {},
+    messagesLoading: false,
+    messagesError: null,
 }
 
 export const messagesReducer = (state = initialState, action) => {
@@ -20,8 +23,25 @@ export const messagesReducer = (state = initialState, action) => {
                         { ...action.payload.message, id: new Date() }
                     ]
                 }
+            };
 
-            }
+        case GET_MESSAGES:
+            return { ...state, messagesLoading: true, messagesError: null };
+
+        case GET_MESSAGES_SUCCESS:
+            return {
+                ...state,
+                messagesLoading: false,
+                messages: action.payload,
+            };
+
+        case GET_MESSAGES_ERROR:
+            return {
+                ...state,
+                messagesLoading: false,
+                messagesError: action.payload,
+            };
+
         default:
             return state;
     }
